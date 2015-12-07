@@ -1,0 +1,21 @@
+<template name="billingResubscribe">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-5 center-block" style="float: none;">
+      <div class="panel panel-default billing-module">
+        <form id="resubscribe">
+          <div class="panel-body">
+            <p class="alert alert-success">Looking to resubscribe to PatchDB? Awesome! We're excited to have you back. To flip the on switch for your account, go ahead and pick out a plan you'd like below. We'll also need your current credit card information. Keep in mind: <strong>this will charge your card immediately</strong>.</p>
+            <div class="form-group">
+              {{>selectPlan}}
+            </div>
+            {{> Template.dynamic template="creditCard" data="billing-resubscribe"}}
+          </div>
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-success resubscribe" data-loading-text="Resubscribing...">Resubscribe</button>
+            <a href="{{pathFor 'billing'}}" class="btn btn-default">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

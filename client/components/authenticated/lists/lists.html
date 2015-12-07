@@ -1,0 +1,14 @@
+<template name="lists">
+  {{> addNewListModal}}
+  <div style="margin-top:0;" class="page-header clearfix">
+    <h3 class="pull-left">Lists</h3>
+    <a href="#" class="btn btn-success pull-right" data-toggle="modal" data-target="#new-list-modal" style="margin-top: 15px;">New List</a>
+  </div>
+  <div class="list-group">
+    {{#each lists}}
+      <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
+    {{else}}
+     <p class="alert alert-info">You haven't created any lists yet!</p>
+    {{/each}}
+  </div>
+</template>

@@ -1,0 +1,39 @@
+{
+  "public": {
+    "plans": [
+      {
+        "name": "full",
+        "price": "5.00",
+        "amount": {
+          "cents": 500,
+          "usd": "$5.00"
+        },
+        "limit": 15,
+        "tradeEngineVerbage": "Access to trade engine.",
+        "tradeEngineAccess": true,
+        "interval": "month"
+      },
+      {
+        "name": "free",
+        "price": "0.00",
+        "amount": {
+          "cents": 0,
+          "usd": "$0.00"
+        },
+        "limit": 5,
+        "tradeEngineVerbage": "No access to trade engine.",
+        "tradeEngineAccess": false,
+        "interval": "month"
+      }
+    ],
+    "braintree": {
+      "BT_PUBLIC_KEY": "tf5d8mk6cfqhfvwt",
+      "BT_MERCHANT_ID": "cv2ktxqr2j8cqgd8"
+    }
+  },
+  "private": {
+    "braintree": {
+      "BT_PRIVATE_KEY": "f01bb04501d5559791dc91161707877e"
+    }
+  }
+}

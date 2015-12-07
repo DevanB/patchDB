@@ -1,0 +1,52 @@
+.editor-header {
+  position: relative;
+  border-bottom: 1px solid #eee;
+  margin-bottom:1.5em;
+
+  label {
+    position: absolute;
+    top: 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+  }
+
+  input[type="text"] {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 40px 0 15px;
+    font-size: 16px;
+  }
+
+  div.btn-group {
+    padding-top: 20px;
+  }
+
+  input[type="text"]:focus {
+    outline: 0;
+  }
+
+  .save-state {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    z-index: 2;
+  }
+}
+
+.sortable-placeholder {
+	background: lighten( yellow, 40% );
+	list-style: none;
+	margin: 10px 0;
+	border-radius: 3px;
+	border: 1px solid darken( yellow, 5% );
+	text-align: center;
+}
+
+.sortable-placeholder:before {
+	content: "Move item here.";
+	color: darken( yellow, 25% );
+	position: relative;
+	top: 9px;
+}

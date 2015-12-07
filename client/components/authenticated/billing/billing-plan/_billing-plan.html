@@ -1,0 +1,22 @@
+<template name="billingPlan">
+  <div class="billing-module">
+    <ul class="list-group">
+      {{#each plans}}
+        <li class="list-group-item {{#if equals plan.subscription.plan.name name}}list-group-item-success{{/if}} bm-block clearfix">
+          <div class="bm-block-content plan">
+            <span class="plan-name-quota"><strong>{{capitalize name}}</strong> &mdash; {{tradeEngineVerbage}}</span>
+          </div>
+          {{#if equals plan.subscription.plan.name name}}
+            <button type="button" disabled="disabled" class="btn btn-success pull-right">Current Plan</button>
+          {{else}}
+            {{#if upgradeAvailable amount.cents}}
+              <button type="button" data-loading-text="Upgrading..." class="btn btn-default pull-right downgrade-upgrade">Upgrade</button>
+            {{else}}
+              <button type="button" data-loading-text="Downgrading..." class="btn btn-default pull-right downgrade-upgrade">Downgrade</button>
+            {{/if}}
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

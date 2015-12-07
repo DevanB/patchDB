@@ -1,0 +1,81 @@
+<template name="list">
+  <div class="clearfix row">
+    <header class="col-xs-12 editor-header">
+      <div class="col-xs-12 col-sm-9">
+        <label for="listName">List Name</label>
+        <input type="text" name="listName" value={{list.name}} placeholder="List Name">
+
+        {{#if saving}}
+         <span class="save-state"><i class="fa fa-frefresh fa-spin"></i> Saving List Name...</span>
+       {{else}}
+         <span class="save-state text-success"><i class="fa fa-check"></i> List Name Saved!</span>
+       {{/if}}
+      </div>
+      <div id="typeBtnGroup" class="col-xs-12 col-sm-3">
+        <label for="type">List Type</label>
+        <div class="btn-group" data-toggle="buttons">
+          <label id="public" class="btn btn-default {{public list.type}}">
+            <input type="radio" name="type" id="type_public" autocomplete="off" value="public"> Public
+          </label>
+          <label id="private" class="btn btn-default {{private list.type}}">
+            <input type="radio" name="type" id="type_private" autocomplete="off" value="private"> Private
+          </label>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Move To...</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Remove From List</a></li>
+        </ul>
+      </div>
+
+      <div id="forTradeBtnGroup" class="btn-group col-sm-offset-1" data-toggle="buttons">
+        <label id="forTrade" class="btn btn-default {{forTrade list.forTrade list.type}}">
+          <input type="radio" name="trade" id="trade_forTrade" autocomplete="off" value="true" {{forTrade list.forTrade list.type}}> For Trade
+        </label>
+        <label id="notForTrade" class="btn btn-default {{notForTrade list.forTrade}}">
+          <input type="radio" name="trade" id="trade_notForTrade" autocomplete="off" value="false"> Not For Trade
+        </label>
+      </div>
+
+      <div class="pull-right">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default active">
+            <input type="radio" name="viewType" id="option1" autocomplete="off" checked> List View
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="viewType" id="option2" autocomplete="off"> Grid View
+          </label>
+        </div>
+
+        <a href="#" data-id="{{list._id}}" id="deleteListBtn" class="btn btn-danger">Delete List</a>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group sortable">
+        <!-- TODO remove sortedByOrder -->
+        {{#each sortedByOrder list.items}}
+          <li data-id="{{_id}}" class="list-group-item clearfix">
+            <span class="pull-left"><input type="checkbox"> {{name}}</span>
+            <!-- <i class="fa fa-remove pull-right text-danger delete-book"></i> -->
+          </li>
+        {{else}}
+           <p class="alert alert-info">You haven't added any items to this list yet! Search/Explore for items</p>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <a data-id="{{list._id}}" class="btn btn-info" id="addItemBtn" href="#">Temporarily Add Random Item</a>
+  </div>
+</template>

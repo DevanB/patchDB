@@ -1,0 +1,52 @@
+<template name="billingInvoice">
+  <div class="billing-module">
+    <ul class="list-group">
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Date</span>
+        <div class="bm-block-content">
+          <strong>{{niceBtDate this.date}}</strong>
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Account billed</span>
+        <div class="bm-block-content">
+          <strong>{{this.email}}</strong>
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Plan</span>
+        <div class="bm-block-content">
+          <strong>{{capitalize this.planId}}</strong> (ends on {{niceBtDate this.ends}})
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Amount charged</span>
+        <div class="bm-block-content">
+          <strong>USD {{addDollarSign this.amount}}</strong>
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Transaction ID</span>
+        <div class="bm-block-content">
+          <strong>{{this.transactionId}}</strong>
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Billed by</span>
+        <div class="bm-block-content">
+          <span><strong>PatchDB</strong></span>
+          <span>@TODO 123 Floozle St.</span>
+          <span>@TODO Skaploozle, NY 10001</span>
+          <span>United States</span>
+        </div>
+      </li>
+      <li class="list-group-item bm-block clearfix">
+        <span class="bm-block-label">Support</span>
+        <div class="bm-block-content">
+          <span><a href="#">@TODO support@patchdb.com</a></span>
+          <span><a href="#">@TODO http://patchdb.com/help</a></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
