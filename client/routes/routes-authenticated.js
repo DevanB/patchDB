@@ -28,11 +28,7 @@ Router.route('billingCard', {
   path: '/billing/card',
   template: 'billingCard',
   parent: 'billing',
-  title: 'Card',
-  onBeforeAction: function(){
-    Session.set('addingNewCreditCard', false);
-    this.next();
-  }
+  title: 'Card'
 });
 
 Router.route('billingInvoice', {
@@ -46,9 +42,5 @@ Router.route('billingResubscribe', {
   path: '/billing/resubscribe',
   template: 'billingResubscribe',
   parent: 'billing',
-  title: 'Resubscribe',
-  onBeforeAction: function(){
-    Session.set('addingNewCreditCard', false);
-    this.next();
-  }
+  title: 'Resubscribe'
 });

@@ -1,4 +1,8 @@
-Template.billingCard.rendered = function(){
+Template.billingCard.onCreated(function(){
+  Session.set('addingNewCreditCard', false);
+});
+
+Template.billingCard.onRendered(function(){
   $('#billing-card').validate({
     rules: {
       cardNumber: {
@@ -43,7 +47,7 @@ Template.billingCard.rendered = function(){
       var updateCardButton = $(".update-card").button('loading');
 
       // Next, figure out whether we're adding a new card. We can check our
-      // addingnewCreditCard Session var here because in addition to controlling
+      // addingNewCreditCard Session var here because in addition to controlling
       // the state of our UI, it also lets us know that the user wants to add
       // a new card. Two birds, one stone, booyah!
       var newCard = Session.get('addingNewCreditCard');
@@ -106,7 +110,7 @@ Template.billingCard.rendered = function(){
       }
     }
   });
-}
+});
 
 Template.billingCard.events({
   'submit form': function(){

@@ -1,4 +1,8 @@
-Template.billingResubscribe.rendered = function(){
+Template.billingResubscribe.onCreated(function(){
+  Session.set('addingNewCreditCard', false);
+});
+
+Template.billingResubscribe.onRendered(function(){
   $("#resubscribe").validate({
     rules: {
       cardNumber: {
@@ -91,7 +95,7 @@ Template.billingResubscribe.rendered = function(){
       }
     }
   });
-}
+});
 
 Template.billingResubscribe.events({
   'submit form': function(e){

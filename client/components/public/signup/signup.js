@@ -1,4 +1,8 @@
-Template.signup.rendered = function(){
+Template.signup.onCreated(function(){
+  Session.set('addingNewCreditCard', true);
+});
+
+Template.signup.onRendered(function(){
   $('#application-signup').validate({
     rules: {
       name: {
@@ -112,7 +116,7 @@ Template.signup.rendered = function(){
       });
     }
   });
-}
+});
 
 Template.signup.events({
   'submit form': function(e){

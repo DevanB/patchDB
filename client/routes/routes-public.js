@@ -12,11 +12,7 @@ Router.route('index', {
 
 Router.route('signup', {
   path: '/signup',
-  template: 'signup',
-  onBeforeAction: function(){
-    Session.set('addingNewCreditCard', true);
-    this.next();
-  }
+  template: 'signup'
 });
 
 Router.route('login', {
