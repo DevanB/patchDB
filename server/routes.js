@@ -12,7 +12,7 @@ Meteor.startup(function () {
 
 var bodyParser = Meteor.npmRequire('body-parser');
 Picker.middleware(bodyParser.json());
-// Picker.middleware(bodyParser.urlencoded({extended: false}));
+Picker.middleware(bodyParser.urlencoded({extended: false}));
 
 var POST = Picker.filter(function (request, response) {
     return request.method == 'POST';
