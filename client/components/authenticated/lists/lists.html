@@ -4,11 +4,51 @@
     <h3 class="pull-left">Lists</h3>
     <a href="#" class="btn btn-success pull-right" data-toggle="modal" data-target="#new-list-modal" style="margin-top: 15px;">New List</a>
   </div>
-  <div class="list-group">
-    {{#each lists}}
-      <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
-    {{else}}
-     <p class="alert alert-info">You haven't created any lists yet!</p>
-    {{/each}}
+
+  {{#unless lists}}
+    <p class="alert alert-info">You haven't created any lists yet!</p>
+  {{/unless}}
+
+  <div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#allLists" aria-controls="allLists" role="tab" data-toggle="tab">All Lists</a></li>
+      <li role="presentation"><a href="#publicLists" aria-controls="publicLists" role="tab" data-toggle="tab">Public Lists</a></li>
+      <li role="presentation"><a href="#privateLists" aria-controls="privateLists" role="tab" data-toggle="tab">Private Lists</a></li>
+      <li role="presentation"><a href="#forTradeLists" aria-controls="forTradeLists" role="tab" data-toggle="tab">For Trade Lists</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="allLists"><br>
+        <div class="list-group">
+          {{#each lists}}
+            <a href="{{pathFor 'list'}}" class="list-group-item">{{name}} <span class="pull-right">{{capitalize type}}</span></a>
+          {{else}}
+            <p class="alert alert-info">You haven't created any lists yet!</p>
+          {{/each}}
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="publicLists"><br>
+        <div class="list-group">
+          {{#each publicLists}}
+            <a href="{{pathFor 'list'}}" class="list-group-item">{{name}} <span class="pull-right">{{forTrade this}}</span></a>
+          {{else}}
+            <p class="alert alert-info">You haven't created any public lists yet!</p>
+          {{/each}}
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="privateLists"><br>
+        {{#each privateLists}}
+          <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
+        {{else}}
+          <p class="alert alert-info">You haven't created any private lists yet!</p>
+        {{/each}}
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="forTradeLists"><br>
+        {{#each forTradeLists}}
+          <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
+        {{else}}
+          <p class="alert alert-info">You haven't created any for trade lists yet!</p>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </template>
