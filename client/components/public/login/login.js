@@ -1,21 +1,4 @@
-/*
-* Controller: Login
-* Template: /client/views/public/login.html
-*/
-
-/*
-* Created
-*/
-
-Template.login.created = function(){
-  // Code to run when template is created goes here.
-}
-
-/*
-* Rendered
-*/
-
-Template.login.rendered = function(){
+Template.login.onRendered(function(){
   $('#application-login').validate({
     rules: {
       emailAddress: {
@@ -36,13 +19,11 @@ Template.login.rendered = function(){
       }
     },
     submitHandler: function(){
-      // Grab the user's details.
       user = {
         email: $('[name="emailAddress"]').val(),
         password: $('[name="password"]').val()
       }
 
-      // Log the user in.
       Meteor.loginWithPassword(user.email, user.password, function(error){
         if(error){
           alert(error.reason);
@@ -50,25 +31,10 @@ Template.login.rendered = function(){
       });
     }
   });
-}
-
-/*
-* Helpers
-*/
-
-Template.login.helpers({
-  example: function(){
-    // Code to run for helper function.
-  }
 });
-
-/*
-* Events
-*/
 
 Template.login.events({
   'submit form': function(e){
-    // Prevent form from submitting.
     e.preventDefault();
   }
 });

@@ -1,4 +1,4 @@
-Template.recoverPassword.rendered = function(){
+Template.recoverPassword.onRendered(function(){
   $('#application-recover-password').validate({
     rules: {
       emailAddress: {
@@ -22,7 +22,7 @@ Template.recoverPassword.rendered = function(){
       });
     }
   });
-}
+});
 
 Template.recoverPassword.events({
   'submit form': function(e){
