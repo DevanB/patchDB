@@ -1,4 +1,8 @@
-Template.resetPassword.rendered = function(){
+Template.resetPassword.onCreated(function(){
+  Session.set('resetPasswordToken', this.params.token);
+});
+
+Template.resetPassword.onRendered(function(){
   $('#application-reset-password').validate({
     rules: {
       newPassword: {
@@ -34,7 +38,7 @@ Template.resetPassword.rendered = function(){
       });
     }
   });
-}
+});
 
 Template.resetPassword.events({
   'submit form': function(e){

@@ -1,4 +1,4 @@
-Template.selectPlan.rendered = function(){
+Template.selectPlan.onRendered(function(){
   // A little UX touch, set the first plan in our list to be selected. We can
   // change this to any item in the list, so for fancy folks you could have this
   // be selected based on real metrics for your most popular plan :)
@@ -6,7 +6,7 @@ Template.selectPlan.rendered = function(){
   firstPlanItem.addClass('active');
   firstPlanItem.find('input').prop("checked", true);
 
-}
+});
 
 Template.selectPlan.helpers({
   plans: function(){

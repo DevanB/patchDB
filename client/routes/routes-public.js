@@ -27,9 +27,5 @@ Router.route('recover-password', {
 
 Router.route('reset-password', {
   path: '/reset-password/:token',
-  template: 'resetPassword',
-  onBeforeAction: function() {
-    Session.set('resetPasswordToken', this.params.token);
-    this.next();
-  }
+  template: 'resetPassword'
 });
