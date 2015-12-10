@@ -58,6 +58,7 @@ meteor@1.1.10
 meteor-platform@1.2.3
 meteorhacks:async@1.0.0
 meteorhacks:npm@1.5.0
+meteorhacks:picker@1.0.3
 meteortoys:allthings@2.3.0
 meteortoys:authenticate@2.1.0
 meteortoys:autopub@2.1.0

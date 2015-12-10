@@ -1,14 +1,3 @@
-/*
-* Server Routes
-* Server-side routes for receiving data from third-party services.
-*/
-
-// https://github.com/iron-meteor/iron-router/issues/1003
-// Router.onBeforeAction(Iron.Router.bodyParser.urlencoded({
-//     extended: false
-// }));
-
-// Setting up Braintree
 var gateway;
 
 Meteor.startup(function () {
@@ -21,20 +10,26 @@ Meteor.startup(function () {
   });
 });
 
-// Node.js style!
-Router.route('/webhooks/braintree', {where: 'server'})
-  .get(function (req, res) {
-    // Defining empty bt_challenge string which will be used to verify destination.
-    // https://developers.braintreepayments.com/javascript+node/guides/webhooks/create
-    var bt_challenge = "";
+var bodyParser = Meteor.npmRequire('body-parser');
+Picker.middleware(bodyParser.json());
+// Picker.middleware(bodyParser.urlencoded({extended: false}));
 
-    res.statusCode = 200;
-    res.end(gateway.webhookNotification.verify(req.query.bt_challenge));
-  })
-  .post(function (req, res) {
+var POST = Picker.filter(function (request, response) {
+    return request.method == 'POST';
+});
+var GET = Picker.filter(function (request, response) {
+    return request.method == 'GET';
+});
 
-    var btSignatureParam = req.body.bt_signature;
-    var btPayloadParam   = req.body.bt_payload;
+GET.route('/webhooks/braintree', function(params, request, response, next) {
+  var bt_challenge = "";
+  response.statusCode = 200;
+  response.end(gateway.webhookNotification.verify(request.query.bt_challenge));
+});
+
+POST.route('/webhooks/braintree', function(params, request, response, next) {
+    var btSignatureParam = request.body.bt_signature;
+    var btPayloadParam   = request.body.bt_payload;
 
     gateway.webhookNotification.parse(
       btSignatureParam,
@@ -49,22 +44,20 @@ Router.route('/webhooks/braintree', {where: 'server'})
 
             // Send HTTP 200 status code to let Braintree know
             // that we received webhook notification
-            res.statusCode = 200;
-            res.end("Hi Braintree!");
+            response.statusCode = 200;
+            response.end("Hi Braintree!");
             break;
           case "subscription_charged_successfully":
             btCreateInvoice(webhookNotification.subscription);
 
             // Send HTTP 200 status code to let Braintree know
             // that we received webhook notification
-            res.statusCode = 200;
-            res.end("Hi Braintree!");
+            response.statusCode = 200;
+            response.end("Hi Braintree!");
             break;
         }
-
       }
     );
-
-    res.statusCode = 200;
-    res.end("Hi Braintree!");
-  });
+    response.statusCode = 200;
+    response.end("Hi Braintree!");
+});
