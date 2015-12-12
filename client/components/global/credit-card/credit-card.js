@@ -17,7 +17,8 @@ Template.creditCard.helpers({
     }
   },
   addNewCard: function(){
-    return Session.get('addingNewCreditCard');
+    let addnewcard = Temp.findOne({'_id': 'addingNewCreditCard'});
+    return addnewcard.value;
   }
 });
 
@@ -31,15 +32,16 @@ Template.creditCardDetails.helpers({
     }
   },
   addNewCard: function(){
-    return Session.get('addingNewCreditCard');
+    let addnewcard = Temp.findOne({'_id': 'addingNewCreditCard'});
+    return addnewcard.value;
   }
 });
 
 Template.creditCard.events({
   'click .add-new-card': function(){
-    Session.set('addingNewCreditCard', true);
+    Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": true}}, {upsert: true});
   },
   'click .cancel-new-card': function(){
-    Session.set('addingNewCreditCard', false);
+    Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": false}}, {upsert: true});
   }
 });
