@@ -1,5 +1,5 @@
 Template.billingResubscribe.onCreated(function(){
-  Session.set('addingNewCreditCard', false);
+  Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": false}}, {upsert: true});
 });
 
 Template.billingResubscribe.onRendered(function(){
@@ -43,9 +43,10 @@ Template.billingResubscribe.onRendered(function(){
     submitHandler: function(){
       // In order to account for the possibility of our customer resubscribing
       // with a new credit card, we need to check whether or not they're doing that.
-      var selectedPlan        = $('[name="selectPlan"]:checked').val(),
-          addingNewCreditCard = Session.get('addingNewCreditCard'),
-          resubscribeButton   = $(".resubscribe").button('loading');
+      var selectedPlan         = $('[name="selectPlan"]:checked').val(),
+          addnewcard           = Temp.findOne({'_id': 'addingNewCreditCard'}),
+          addingNewCreditCard  = addnewcard.value,
+          resubscribeButton    = $(".resubscribe").button('loading');
 
       // Because we'll be reusing one of our methods below, we can wrap it in a
       // function to limit repetition. PeRfOrMaNcE!

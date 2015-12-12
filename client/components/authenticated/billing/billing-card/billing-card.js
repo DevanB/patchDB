@@ -1,5 +1,5 @@
 Template.billingCard.onCreated(function(){
-  Session.set('addingNewCreditCard', false);
+  Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": false}}, {upsert: true});
 });
 
 Template.billingCard.onRendered(function(){
@@ -47,10 +47,11 @@ Template.billingCard.onRendered(function(){
       var updateCardButton = $(".update-card").button('loading');
 
       // Next, figure out whether we're adding a new card. We can check our
-      // addingNewCreditCard Session var here because in addition to controlling
+      // Temp.id=addingNewCreditCard here because in addition to controlling
       // the state of our UI, it also lets us know that the user wants to add
       // a new card. Two birds, one stone, booyah!
-      var newCard = Session.get('addingNewCreditCard');
+      var addnewcard = Temp.findOne({'_id': 'addingNewCreditCard'});
+      var newCard =  addnewcard.value;
       if (newCard){
         // If we're adding a new card, grab the card's details...
         var card = {
@@ -74,7 +75,7 @@ Template.billingCard.onRendered(function(){
             } else {
               updateCardButton.button('reset');
               Session.set('currentUserPlan_' + currentUser, null);
-              Session.set('addingNewCreditCard', false);
+              Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": false}}, {upsert: true});
               Bert.alert("New card successfully added!", "success");
             }
           }

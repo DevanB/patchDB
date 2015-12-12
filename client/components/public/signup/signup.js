@@ -1,5 +1,5 @@
 Template.signup.onCreated(function(){
-  Session.set('addingNewCreditCard', true);
+  Temp.update({"_id": 'addingNewCreditCard'}, {$set: {"value": true}}, {upsert: true});
 });
 
 Template.signup.onRendered(function(){
