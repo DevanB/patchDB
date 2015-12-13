@@ -1,29 +1,14 @@
 Meteor.methods({
-  insertList: function(name, userId){
+  insertList: function(name){
     check(name, String);
-    var list = {
+    let user = Meteor.userId(),
+        list = {
       name: name,
-      owner: null,
+      owner: user,
       type: 'private',
       forTrade: false
     }
-
-    // Because our method needs to operate with and without a userId, make sure
-    // that if one is passed, we check it against our expected pattern. If not,
-    // we just get the current logged in user.
-    if (userId) {
-      check(userId, String);
-      list.owner = userId;
-    } else {
-      var user = Meteor.userId();
-      list.owner = user;
-    }
-
-    // Once we've confirmed the insert is valid, push the list into the
-    // collection. Note: we're setting this equal to a variable and returning
-    // it from our method so that we can return the generate ID back to the
-    // client. We'll then use this ID to route our user. Neat!
-    var newList = Lists.insert(list, function(error){
+    let newList = Lists.insert(list, function(error){
       if (error) console.log(error);
     });
     return newList;
