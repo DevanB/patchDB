@@ -8,7 +8,6 @@
           "cents": 500,
           "usd": "$5.00"
         },
-        "limit": 15,
         "tradeEngineVerbage": "Access to trade engine.",
         "tradeEngineAccess": true,
         "interval": "month"
@@ -20,7 +19,6 @@
           "cents": 0,
           "usd": "$0.00"
         },
-        "limit": 5,
         "tradeEngineVerbage": "No access to trade engine.",
         "tradeEngineAccess": false,
         "interval": "month"

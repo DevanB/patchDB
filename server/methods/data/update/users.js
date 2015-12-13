@@ -1,25 +1,6 @@
 Future = Npm.require('fibers/future');
 
 Meteor.methods({
-  updateUserQuota: function(update){
-    check(update, {auth: String, user: String, quota: Number});
-
-    // Before we perform the update, ensure that the auth token passed is valid.
-    if ( update.auth == SERVER_AUTH_TOKEN ){
-      Meteor.users.update(update.user, {
-        $set: {
-          "subscription.plan.used": update.quota
-        }
-      }, function(error){
-        if (error) {
-          console.log(error);
-        }
-      });
-    } else {
-      throw new Meteor.Error('invalid-auth-token', 'Sorry, your server authentication token is invalid.');
-    }
-  },
-
   updateUserPlan: function(update){
     check(update, {
       auth: String,

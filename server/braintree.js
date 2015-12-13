@@ -193,7 +193,6 @@ Meteor.methods({
     // in /settings.json).
     var availablePlans = Meteor.settings.public.plans;
     var currentPlan    = _.find(availablePlans, function(plans){ return plans.name == plan; });
-    var limit          = currentPlan.limit;
     var price          = currentPlan.price;
 
     Meteor.call('btFindUserSubscription', getUser.customerId, function(error, customerSubscription){
