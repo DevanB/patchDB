@@ -106,7 +106,7 @@ Template.signup.onRendered(function(){
                 // If login fails, make sure to "reset" our signup interface.
                 submitButton.button('reset');
               } else {
-                Router.go('/lists');
+                FlowRouter.go('/lists');
                 // If creation fails, make sure to "reset" our signup interface.
                 submitButton.button('reset');
               }

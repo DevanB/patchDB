@@ -16,7 +16,7 @@ Template.addNewListModal.onRendered(function() {
         if (error) {
           alert(error.reason);
         } else {
-          Router.go('/lists/' + response);
+          FlowRouter.go('/lists/' + response);
           $('#new-list-modal').modal('hide');
           $('.modal-backdrop').remove();
         }

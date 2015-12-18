@@ -1,6 +1,5 @@
 {
   "packages": {
-    "iron-router": {},
     "sass": {},
     "bootstrap-3": {},
     "handlebars-server": {}

@@ -20,7 +20,7 @@
       <div role="tabpanel" class="tab-pane fade in active" id="allLists"><br>
         <div class="list-group">
           {{#each lists}}
-            <a href="{{pathFor 'list'}}" class="list-group-item">{{name}} <span class="pull-right">{{capitalize type}}</span></a>
+            <a href="{{pathFor 'list' _id=_id}}" class="list-group-item">{{name}} <span class="pull-right">{{capitalize type}}</span></a>
           {{else}}
             <p class="alert alert-info">You haven't created any lists yet!</p>
           {{/each}}
@@ -29,7 +29,7 @@
       <div role="tabpanel" class="tab-pane fade" id="publicLists"><br>
         <div class="list-group">
           {{#each publicLists}}
-            <a href="{{pathFor 'list'}}" class="list-group-item">{{name}} <span class="pull-right">{{forTrade this}}</span></a>
+            <a href="{{pathFor 'list' _id=_id}}" class="list-group-item">{{name}} <span class="pull-right">{{forTrade this}}</span></a>
           {{else}}
             <p class="alert alert-info">You haven't created any public lists yet!</p>
           {{/each}}
@@ -37,14 +37,14 @@
       </div>
       <div role="tabpanel" class="tab-pane fade" id="privateLists"><br>
         {{#each privateLists}}
-          <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
+          <a href="{{pathFor 'list' _id=_id}}" class="list-group-item">{{name}}</a>
         {{else}}
           <p class="alert alert-info">You haven't created any private lists yet!</p>
         {{/each}}
       </div>
       <div role="tabpanel" class="tab-pane fade" id="forTradeLists"><br>
         {{#each forTradeLists}}
-          <a href="{{pathFor 'list'}}" class="list-group-item">{{name}}</a>
+          <a href="{{pathFor 'list' _id=_id}}" class="list-group-item">{{name}}</a>
         {{else}}
           <p class="alert alert-info">You haven't created any for trade lists yet!</p>
         {{/each}}

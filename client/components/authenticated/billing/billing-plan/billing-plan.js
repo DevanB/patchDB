@@ -33,18 +33,12 @@ Template.billingPlan.helpers({
 
 Template.billingPlan.events({
   'click .downgrade-upgrade': function(e){
-    // Nifty! Meteor is a total nerd and gives us access to the current iterated
-    // object in an {{#each}} block as "this."
     var plan            = this.name;
-    // Ahh smell that UX fresh in the morning. Cock-a-doodle-doo indeed!
     var downgradeUpgradeButton = $(e.target).button('loading');
-    // Before we update our user, let's make sure they're certain they want to do this...
     var confirmPlanChange = confirm("Are you sure you want to change your plan?");
-    // If we get a positive confirmation, call to our btUpdateSubscription method on the server.
     if (confirmPlanChange){
       Meteor.call('btUpdateSubscription', plan, function(error, response){
         if (error){
-          // If we get an error, log it out so we can see what's wrong.
           downgradeUpgradeButton.button('reset');
           Bert.alert(error.reason, "danger");
         } else {

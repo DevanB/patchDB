@@ -31,7 +31,7 @@ let initSortable = function(sortableClass){
 
 Template.list.onCreated(function() {
   this.saveState = new ReactiveVar();
-  this.subscribe('list', Router.current().params._id);
+  this.subscribe('list', FlowRouter.getParam("_id"));
 });
 
 Template.list.onRendered(function(){
@@ -79,7 +79,7 @@ Template.list.events({
         if (error) {
           return alert(error.reason);
         } else {
-          Router.go('/lists');
+          FlowRouter.go('/lists');
         }
       });
     }
@@ -88,12 +88,12 @@ Template.list.events({
     event.preventDefault();
     let value = event.target.id;
     if (value === 'public' || value === 'private') {
-      Meteor.call('updateListType', value, Router.current().params._id, (error, result) => {
+      Meteor.call('updateListType', value, FlowRouter.getParam("_id"), (error, result) => {
         if (error) {
           return alert(error.reason);
         } else {
           if (value === 'private') {
-            Meteor.call('updateListForTrade', false, Router.current().params._id, (error, result) => {
+            Meteor.call('updateListForTrade', false, FlowRouter.getParam("_id"), (error, result) => {
               if (error) {
                 return alert(error.reason);
               }
@@ -109,7 +109,7 @@ Template.list.events({
     event.preventDefault();
     let value = event.target.id;
     if (value === 'forTrade' && !$("#private").hasClass("active")) {
-      Meteor.call('updateListForTrade', true, Router.current().params._id, (error, result) => {
+      Meteor.call('updateListForTrade', true, FlowRouter.getParam("_id"), (error, result) => {
         if (error) {
           return alert(error.reason);
         }
@@ -119,7 +119,7 @@ Template.list.events({
       event.stopPropagation();
       return Bert.alert("List must be public to turn 'For Trade' on", "danger");
     } else if (value === 'notForTrade') {
-      Meteor.call('updateListForTrade', false, Router.current().params._id, (error, result) => {
+      Meteor.call('updateListForTrade', false, FlowRouter.getParam("_id"), (error, result) => {
         if (error) {
           return alert(error.reason);
         }
@@ -133,7 +133,7 @@ Template.list.events({
     template.saveState.set(true);
 
     if (name !== "") {
-      Meteor.callPromise("updateListName", Router.current().params._id, name)
+      Meteor.callPromise("updateListName", FlowRouter.getParam("_id"), name)
         .then(function() {
           delay(function() {
             template.saveState.set(false);

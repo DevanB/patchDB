@@ -41,7 +41,6 @@ UI.registerHelper('plan', function(){
 });
 
 UI.registerHelper('equals', function(c1,c2){
-  // If case1 is equal to case2, return true, else false.
   return c1 == c2 ? true : false;
 });
 
