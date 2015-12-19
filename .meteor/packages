@@ -11,7 +11,6 @@ accounts-base
 jquery
 check
 audit-argument-checks
-iron:router
 cmather:handlebars-server
 themeteorchef:jquery-validation
 twbs:bootstrap
@@ -32,8 +31,10 @@ standard-minifiers
 npm-container
 ecmascript
 zimme:active-route
-monbro:iron-router-breadcrumb
 deanius:promise
 reactive-var
 meteorhacks:picker
 aldeed:collection2
+kadira:flow-router
+kadira:blaze-layout
+ahref:flow-router-breadcrumb

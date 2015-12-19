@@ -1,5 +1,5 @@
 Template.billingInvoice.onCreated(function(){
-  this.subscribe('viewInvoice', Router.current().params._id);
+  this.subscribe('viewInvoice', FlowRouter.getParam("_id"));
 });
 
 Template.billingInvoice.helpers({

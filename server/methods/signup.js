@@ -65,8 +65,7 @@ Meteor.methods({
                   customerId: customerId,
                   subscription: {
                     plan: {
-                      name: customer.plan,
-                      used: 0
+                      name: customer.plan
                     },
                     payment: {
                       card: {

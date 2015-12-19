@@ -1,8 +1,20 @@
 <template name="layout">
-	{{>bertAlert}}
-	{{>header}}
+	{{> bertAlert}}
+	{{> header}}
 	<div class="container">
-		{{>breadcrumb}}
-		{{>yield}}
+		{{#if loggingIn}}
+			{{> loading}}
+		{{else}}
+			{{#if authenticated}}
+				{{#unless redirectAuthenticated}}
+					{{> breadcrumb}}
+					{{> Template.dynamic template=yield}}
+				{{/unless}}
+			{{else}}
+				{{#unless redirectPublic}}
+					{{> Template.dynamic template=yield}}
+				{{/unless}}
+			{{/if}}
+		{{/if}}
 	</div>
 </template>

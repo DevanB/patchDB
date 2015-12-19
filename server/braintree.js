@@ -188,7 +188,6 @@ Meteor.methods({
     // and lookup our customerId.
     var user    = Meteor.userId();
     var getUser = Meteor.users.findOne({"_id": user}, {fields: {"customerId": 1}});
-
     // We retrieve plan's price (in braintree's format from "price" inside plan array defined
     // in /settings.json).
     var availablePlans = Meteor.settings.public.plans;
@@ -207,14 +206,12 @@ Meteor.methods({
           if (error) {
             btUpdateSubscription.return(error);
           } else {
-
             // We successfully updated subscription on Braintree servers, but we need to update user
             // plan inside our database on server too! First we should find user's subscription here:
             gateway.subscription.find(customerSubscription.id, function(error, updatedSubscription) {
               if (error){
                 btUpdateSubscription.return(error);
               } else {
-
                 // Second we create our update object (don't forget SERVER_AUTH_TOKEN)...
                 // Note: we're using a Fiber() here because we're calling to Meteor code from
                 // within another function's callback (without this Meteor will throw an error).

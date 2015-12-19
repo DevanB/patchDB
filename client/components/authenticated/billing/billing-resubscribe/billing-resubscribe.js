@@ -60,7 +60,7 @@ Template.billingResubscribe.onRendered(function(){
             // billing overview page and showing an alert message.
             resubscribeButton.button("reset");
             Bert.alert("Successfully resubscribed. Welcome back!", "success");
-            Router.go('/billing');
+            FlowRouter.go('/billing');
           }
         });
       }
